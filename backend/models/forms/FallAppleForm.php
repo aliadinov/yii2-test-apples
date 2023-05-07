@@ -37,7 +37,7 @@ class FallAppleForm extends Model
         }
     }
 
-    public function getApple(): ?Apple
+    public function getApple(): Apple
     {
         return $this->apple;
     }

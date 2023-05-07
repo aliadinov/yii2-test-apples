@@ -35,6 +35,11 @@ class ApplesService
         $this->generateRandomApples();
     }
 
+    public function getAllApples(): array
+    {
+        return $this->repository->getAll();
+    }
+
     /** @throws Exception */
     public function fallToGround(Apple $apple): void
     {

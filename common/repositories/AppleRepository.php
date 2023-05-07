@@ -25,4 +25,9 @@ class AppleRepository
     {
         Yii::$app->db->createCommand()->truncateTable(Apple::tableName())->execute();
     }
+
+    public function getAll(): array
+    {
+        return Apple::findAll();
+    }
 }
