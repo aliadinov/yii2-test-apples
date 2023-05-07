@@ -6,6 +6,11 @@ use common\models\Apple;
 
 class AppleRepository
 {
+    public function finById(int $appleId): ?Apple
+    {
+        return Apple::findOne($appleId);
+    }
+
     public function save(Apple $apple): bool
     {
         return $apple->save();
