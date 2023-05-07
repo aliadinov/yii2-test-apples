@@ -22,7 +22,7 @@ class ApplesController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['index', 'regenerate-random-apples', 'fall-to-ground', 'eat-apple', 'remove-apple'],
+                        'actions' => ['index', 'regenerate-random-apples', 'fall-to-ground', 'eat-apple'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -34,7 +34,6 @@ class ApplesController extends Controller
                     'regenerate-random-apples' => ['post'],
                     'fall-to-ground' => ['post'],
                     'eat-apple' => ['post'],
-                    'remove-Apple' => ['post'],
                 ],
             ],
         ];
