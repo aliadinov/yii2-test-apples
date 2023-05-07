@@ -10,6 +10,8 @@ use yii\base\Exception;
 
 class ApplesService
 {
+    CONST ROTTEN_INTERVAL_SECONDS = 5 * 60 * 60;
+
     private AppleRepository $repository;
 
     public function __construct(AppleRepository $repository)
@@ -53,7 +55,7 @@ class ApplesService
         }
 
         $apple->status  = AppleStatus::ON_GROUND;
-        $apple->fell_at = date('Y-m-d H:i:s', time());
+        $apple->fallen_at = date('Y-m-d H:i:s', time());
         $this->repository->save($apple);
     }
 
@@ -74,5 +76,10 @@ class ApplesService
         if ($apple->size <= 0) {
             $this->repository->delete($apple);
         }
+    }
+
+    public function markRottenApples(): int
+    {
+        return $this->repository->markRottenApples(self::ROTTEN_INTERVAL_SECONDS);
     }
 }

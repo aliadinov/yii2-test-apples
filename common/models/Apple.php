@@ -13,7 +13,7 @@ use yii\db\Expression;
  * @property int $status [smallint]
  * @property string $size [decimal(10)]
  * @property int $created_at [timestamp]
- * @property int $fell_at [timestamp]
+ * @property int $fallen_at [timestamp]
  */
 class Apple extends ActiveRecord
 {

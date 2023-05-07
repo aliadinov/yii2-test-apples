@@ -23,7 +23,7 @@ class m230507_160000_apples extends Migration
             'status'      => $this->smallInteger()->notNull(),
             'size'        => $this->decimal()->notNull()->defaultValue(100),
             'created_at'  => $this->timestamp(),
-            'fell_at'     => $this->timestamp()
+            'fallen_at'     => $this->timestamp()
         ], $tableOptions);
     }
 

@@ -22,7 +22,7 @@ use yii\widgets\ActiveForm;
     <div class="apples__size"><?= Html::encode($apple->size) ?></div>
     <div class="apples__status"><?= Html::encode(AppleStatus::getLabel($apple->status)) ?></div>
     <div class="apples__create-date">Создано: <?= Html::encode($apple->created_at) ?></div>
-    <div class="apples__full-date">Упало: <?= Html::encode($apple->fell_at) ?></div>
+    <div class="apples__full-date">Упало: <?= Html::encode($apple->fallen_at) ?></div>
     <div class="apples__button">
         <?php $form = ActiveForm::begin([
             'action' => url(['apples/fall-to-ground']),

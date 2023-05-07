@@ -3,7 +3,9 @@
 namespace common\repositories;
 
 use common\models\Apple;
+use common\models\enums\AppleStatus;
 use Yii;
+use yii\db\Expression;
 
 class AppleRepository
 {
@@ -30,5 +32,15 @@ class AppleRepository
     public function getAll(): array
     {
         return Apple::find()->all();
+    }
+
+    public function markRottenApples(int $rottenIntervalSeconds): int
+    {
+        return Apple::updateAll([
+            'status' => AppleStatus::ROTTEN
+        ], ['AND',
+            ['=', 'status', AppleStatus::ON_GROUND],
+            ['<', 'fallen_at', new Expression("NOW() - INTERVAL $rottenIntervalSeconds SECOND")]
+        ]);
     }
 }
