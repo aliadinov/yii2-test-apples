@@ -1,4 +1,8 @@
 <?php
+
+use common\repositories\AppleRepository;
+use common\services\ApplesService;
+
 return [
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
@@ -10,4 +14,14 @@ return [
             'class' => \yii\caching\FileCache::class,
         ],
     ],
+    'container' => [
+        'singletons' => [
+            ApplesService::class => [
+                'class' => ApplesService::class
+            ],
+            AppleRepository::class => [
+                'class' => AppleRepository::class
+            ]
+        ],
+    ]
 ];

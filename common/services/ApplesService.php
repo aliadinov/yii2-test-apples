@@ -40,6 +40,11 @@ class ApplesService
         return $this->repository->getAll();
     }
 
+    public function finById(int $appleId): ?Apple
+    {
+        return $this->repository->finById($appleId);
+    }
+
     /** @throws Exception */
     public function fallToGround(Apple $apple): void
     {

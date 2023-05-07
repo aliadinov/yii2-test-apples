@@ -16,7 +16,7 @@ use yii\web\View;
     <div class="container">
         <h1>Яблоки</h1>
         <div class="apples__generate">
-            <a id="apples-generate-button" href="<?php url('/apples/regenerate-random-apples')?>" class="btn btn-primary ">Сгенерировать яблоки</a>
+            <a id="apples-generate-button" href="<?php url(['/apples/regenerate-random-apples'])?>" class="btn btn-primary ">Сгенерировать яблоки</a>
         </div>
         <?php if ($apples) { ?>
             <div class="apples__items">

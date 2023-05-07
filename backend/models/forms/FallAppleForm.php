@@ -3,7 +3,7 @@
 namespace backend\models\forms;
 
 use common\models\Apple;
-use common\repositories\AppleRepository;
+use common\services\ApplesService;
 use yii\base\Model;
 
 class FallAppleForm extends Model
@@ -13,11 +13,13 @@ class FallAppleForm extends Model
 
     private ?Apple $apple = null;
 
-    private AppleRepository $repository;
+    private ApplesService $applesService;
 
-    public function __construct(AppleRepository $repository)
+    public function __construct($config = [])
     {
-        $this->repository = $repository;
+        parent::__construct($config);
+
+        $this->applesService = \Yii::$container->get(ApplesService::class);
     }
 
     public function rules(): array
@@ -30,7 +32,7 @@ class FallAppleForm extends Model
 
     public function checkAppleExistence(): void
     {
-        $this->apple = $this->repository->finById($this->appleId);
+        $this->apple = $this->applesService->finById($this->appleId);
 
         if (!$this->apple) {
             $this->addError('appleId', 'Яблоко не существует');

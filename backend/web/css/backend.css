@@ -88,3 +88,58 @@ a.desc:after {
 .nav > li > form > button.logout:focus {
     outline: none;
 }
+
+.apples__items {
+    display: flex;
+    flex-direction: column;
+}
+.apples__item {
+    display: grid;
+    grid-template-columns: repeat( 9, minmax(7%, 1fr) );
+    grid-gap: 10px;
+}
+
+.apples__item > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.apples__item:not(:last-child) {
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ced4da;
+}
+
+div.apples__button {
+    display: flex;
+    align-items: end;
+}
+.apples__button a {
+    width: 100%;
+}
+
+#eat-apple-form {
+    text-align: right;
+}
+
+.field-eatappleform-size {
+    margin-bottom: 5px;
+}
+
+.eat-apple-form  button {
+    width: 100%;
+}
+
+.alert-message {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000001;
+    background-color: #212529;
+    border-radius: 0.375rem;
+    padding: 20px;
+    box-shadow: 0 1px 15px rgb(0 0 0 / 15%);
+}
+.alert-message span {
+    color: #fff;
+}

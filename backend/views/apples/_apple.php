@@ -8,6 +8,8 @@
 use backend\models\forms\FallAppleForm;
 use common\models\Apple;
 use backend\models\forms\EatAppleForm;
+use common\models\enums\AppleColor;
+use common\models\enums\AppleStatus;
 use yii\helpers\Html;
 use yii\web\View;
 use yii\widgets\ActiveForm;
@@ -15,12 +17,12 @@ use yii\widgets\ActiveForm;
 ?>
 
 <div class="apples__item" data-id="<?= $apple->id ?>">
-    <div class="apples__id"><?= $apple->id ?></div>
-    <div class="apples__color"><?= $apple->color ?></div>
-    <div class="apples__size"><?= $apple->size ?></div>
-    <div class="apples__status"><?= $apple->status ?></div>
-    <div class="apples__create-date"><?= $apple->created_at ?></div>
-    <div class="apples__full-date"><?= $apple->fell_at ?></div>
+    <div class="apples__id">#<?= Html::encode($apple->id) ?></div>
+    <div class="apples__color"><?= Html::encode(AppleColor::getLabel($apple->color)) ?></div>
+    <div class="apples__size"><?= Html::encode($apple->size) ?></div>
+    <div class="apples__status"><?= Html::encode(AppleStatus::getLabel($apple->status)) ?></div>
+    <div class="apples__create-date">Создано: <?= Html::encode($apple->created_at) ?></div>
+    <div class="apples__full-date">Упало: <?= Html::encode($apple->fell_at) ?></div>
     <div class="apples__button">
         <?php $form = ActiveForm::begin([
             'action' => url(['apples/fall-to-ground']),

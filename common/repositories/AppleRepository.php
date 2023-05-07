@@ -3,6 +3,7 @@
 namespace common\repositories;
 
 use common\models\Apple;
+use Yii;
 
 class AppleRepository
 {
@@ -28,6 +29,6 @@ class AppleRepository
 
     public function getAll(): array
     {
-        return Apple::findAll();
+        return Apple::find()->all();
     }
 }

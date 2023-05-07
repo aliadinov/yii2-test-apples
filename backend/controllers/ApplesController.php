@@ -13,13 +13,13 @@ use yii\web\Response;
 
 class ApplesController extends Controller
 {
-    protected ApplesService $appleService;
+    protected ApplesService $applesService;
 
     public function behaviors(): array
     {
         return [
             'access' => [
-                'class' => AccessControl::className(),
+                'class' => AccessControl::class,
                 'rules' => [
                     [
                         'actions' => ['index', 'regenerate-random-apples', 'fall-to-ground', 'eat-apple'],
@@ -29,7 +29,7 @@ class ApplesController extends Controller
                 ],
             ],
             'verbs' => [
-                'class' => VerbFilter::className(),
+                'class' => VerbFilter::class,
                 'actions' => [
                     'regenerate-random-apples' => ['post'],
                     'fall-to-ground' => ['post'],
@@ -39,19 +39,19 @@ class ApplesController extends Controller
         ];
     }
 
-    public function __construct($id, $module, $config, ApplesService $appleService)
+    public function __construct($id, $module, $config, ApplesService $applesService)
     {
         parent::__construct($id, $module, $config);
 
-        $this->appleService = $appleService;
+        $this->applesService = $applesService;
     }
 
     public function actionIndex(): string
     {
         return $this->render('index', [
-            'apples'          => $this->appleService->getAllApples(),
-            'eatAppleForm'    => new EatAppleForm(),
-            'fallAppleForm'   => new FallAppleForm(),
+            'apples'        => $this->applesService->getAllApples(),
+            'eatAppleForm'  => new EatAppleForm(),
+            'fallAppleForm' => new FallAppleForm(),
         ]);
     }
 
@@ -60,7 +60,7 @@ class ApplesController extends Controller
         $success = false;
 
         try {
-            $this->appleService->regenerateRandomApples();
+            $this->applesService->regenerateRandomApples();
             $success = true;
             $message = 'Яблоки успешно сгенерированы';
         } catch (Exception $e) {
@@ -82,7 +82,7 @@ class ApplesController extends Controller
         $fallAppleForm = new FallAppleForm();
         if ($fallAppleForm->load(request()->post()) && $fallAppleForm->validate()) {
             try {
-                $this->appleService->fallToGround($fallAppleForm->getApple());
+                $this->applesService->fallToGround($fallAppleForm->getApple());
                 $success = true;
                 $message = 'Яблоко успешно упало';
             } catch (Exception $e) {
@@ -107,7 +107,7 @@ class ApplesController extends Controller
         $eatAppleForm = new EatAppleForm();
         if ($eatAppleForm->load(request()->post()) && $eatAppleForm->validate()) {
             try {
-                $this->appleService->eat($eatAppleForm->getApple(), $eatAppleForm->size);
+                $this->applesService->eat($eatAppleForm->getApple(), $eatAppleForm->size);
                 $success = true;
                 $message = 'Яблоко успешно откушено';
             } catch (Exception $e) {
@@ -134,9 +134,9 @@ class ApplesController extends Controller
             'html' => [
                 'cssClass' => '.apples__wrapper',
                 'layout'   => $this->renderPartial('index', [
-                    'apples'          => $this->appleService->getAllApples(),
-                    'eatAppleForm'    => new EatAppleForm(),
-                    'fallAppleForm'   => new FallAppleForm(),
+                    'apples'        => $this->applesService->getAllApples(),
+                    'eatAppleForm'  => new EatAppleForm(),
+                    'fallAppleForm' => new FallAppleForm(),
                 ])
             ],
             'message' => $message,
