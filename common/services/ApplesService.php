@@ -54,7 +54,7 @@ class ApplesService
             throw new Exception('Только яблоко, висящее на дереве, может упасть');
         }
 
-        $apple->status  = AppleStatus::ON_GROUND;
+        $apple->status = AppleStatus::ON_GROUND;
         $apple->fallen_at = date('Y-m-d H:i:s', time());
         $this->repository->save($apple);
     }
